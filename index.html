@@ -1410,213 +1410,244 @@
 <!-- Reproductor de Música -->
 <audio id="audioPlayer"></audio>
 
-    <div class="player-container">
-        <div class="song-title" id="songTitle">Cargando música...</div>
+    <div class="music-dock" id="musicDock">
+        <button id="toggleMusicBtn" class="toggle-btn">
+            <span id="toggleIcon">🎵</span>
+        </button>
 
-        <div class="progress-wrapper">
-            <input type="range" id="progressBar" value="0" step="0.1">
-        </div>
-
-        <div class="controls">
-            <button id="prevBtn" class="ctrl-btn">⏮</button>
-            
-            <button id="playBtn" class="play-btn">
-                <span id="playIcon">▶</span>
-            </button>
-            
-            <button id="nextBtn" class="ctrl-btn">⏭</button>
+        <div class="player-panel">
+            <div class="panel-content">
+                <div class="song-info-compact" id="songTitle">Cargando...</div>
+                
+                <div class="controls-compact">
+                    <button id="prevBtn" class="mini-btn">⏮</button>
+                    <button id="playBtn" class="play-btn-compact">▶</button>
+                    <button id="nextBtn" class="mini-btn">⏭</button>
+                </div>
+                
+                <div class="progress-container-compact">
+                    <div class="progress-bar-fill" id="progressFill"></div>
+                </div>
+            </div>
         </div>
     </div>
 
     <style>
-        /* Contenedor Flotante Estilo Cristal */
-        .player-container {
+        /* Contenedor Principal (Abajo Izquierda) */
+        .music-dock {
             position: fixed;
             bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 90%;
-            max-width: 350px;
-            background: rgba(10, 14, 39, 0.95); /* Fondo oscuro */
-            border: 1px solid #00d9ff; /* Borde neón sutil */
-            border-radius: 20px;
-            padding: 15px 20px;
-            box-shadow: 0 0 25px rgba(0, 217, 255, 0.2);
-            z-index: 9999;
-            backdrop-filter: blur(10px);
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        /* Título */
-        .song-title {
-            text-align: center;
-            color: #ff00ff; /* Rosa Neón */
-            font-size: 14px;
-            font-weight: bold;
-            text-shadow: 0 0 8px rgba(255, 0, 255, 0.5);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        /* Barra de Progreso Personalizada */
-        .progress-wrapper {
-            width: 100%;
+            left: 20px;
+            z-index: 10000; /* Por encima de todo */
             display: flex;
             align-items: center;
         }
 
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 4px;
-            background: #2d1b4e;
-            border-radius: 2px;
-            outline: none;
-            cursor: pointer;
-        }
-
-        /* La "bolita" del deslizador */
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: #00fff2;
-            box-shadow: 0 0 10px #00fff2;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        input[type=range]::-webkit-slider-thumb:hover {
-            transform: scale(1.3);
-        }
-
-        /* Controles */
-        .controls {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 25px;
-        }
-
-        .ctrl-btn {
-            background: none;
-            border: none;
-            color: #00d9ff;
-            font-size: 24px;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .ctrl-btn:hover {
-            color: #fff;
-            transform: scale(1.1);
-        }
-
-        /* Botón Play Central (Más grande) */
-        .play-btn {
+        /* Botón Redondo Principal */
+        .toggle-btn {
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #fff; /* Blanco como referencia */
-            border: none;
+            background: #0a0e27;
+            border: 2px solid #ff00ff; /* Borde Rosa Neón */
+            color: #ff00ff;
+            font-size: 22px;
+            cursor: pointer;
+            z-index: 2; /* Siempre encima del panel */
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-            transition: all 0.3s;
         }
 
-        .play-btn:hover {
+        .toggle-btn:hover {
             transform: scale(1.1);
-            background: #00fff2; /* Se pone cyan al pasar el mouse */
-            box-shadow: 0 0 20px #00fff2;
+            box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
         }
 
-        #playIcon {
+        /* Animación cuando está sonando (Giro suave) */
+        .toggle-btn.playing {
+            animation: spinPulse 3s infinite linear;
+            border-color: #00fff2; /* Cambia a azul cyan */
+            color: #00fff2;
+        }
+
+        @keyframes spinPulse {
+            0% { box-shadow: 0 0 5px rgba(0, 255, 242, 0.2); }
+            50% { box-shadow: 0 0 20px rgba(0, 255, 242, 0.8); }
+            100% { box-shadow: 0 0 5px rgba(0, 255, 242, 0.2); }
+        }
+
+        /* El Panel que se esconde */
+        .player-panel {
+            background: rgba(10, 14, 39, 0.95);
+            border: 1px solid #00d9ff;
+            height: 60px; /* Altura fija */
+            border-radius: 0 30px 30px 0; /* Redondeado solo a la derecha */
+            padding-left: 25px; /* Espacio para que no choque con el botón */
+            padding-right: 20px;
+            margin-left: -25px; /* Se mete debajo del botón */
+            
+            /* Truco de ocultamiento */
+            max-width: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            pointer-events: none; /* No molesta si está cerrado */
+            
+            display: flex;
+            align-items: center;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Cuando el dock tiene la clase 'active' (Abierto) */
+        .music-dock.active .player-panel {
+            max-width: 250px; /* Se expande */
+            opacity: 1;
+            pointer-events: all;
+            box-shadow: 5px 0 20px rgba(0, 217, 255, 0.3);
+        }
+
+        /* Contenido interno */
+        .panel-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            width: 200px; /* Ancho fijo interno para que no se deforme */
+        }
+
+        .song-info-compact {
+            color: #fff;
+            font-size: 11px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: center;
+        }
+
+        .controls-compact {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .mini-btn {
+            background: none;
+            border: none;
+            color: #00d9ff;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .play-btn-compact {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            background: #00d9ff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             color: #000;
-            font-size: 20px;
-            margin-left: 2px; /* Ajuste visual */
+        }
+
+        /* Barrita de progreso mini */
+        .progress-container-compact {
+            width: 100%;
+            height: 3px;
+            background: #333;
+            border-radius: 2px;
+            overflow: hidden;
+            margin-top: 2px;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background: #ff00ff;
+            width: 0%;
+            transition: width 0.1s linear;
         }
     </style>
 
     <script>
-        // --- AQUÍ ESTÁ EL ARREGLO DE TU "DESASTRE" ---
-        // Ya puse los nombres track1 y track2 que vi en tu captura.
+        // --- TU PLAYLIST ---
         const playlist = [
-            { title: "Red Lagoon - Ambiente", file: "audio/track1.mp3" },
-            { title: "The Rust Belt - Cyberpunk", file: "audio/track2.mp3" }
-            // Si agregas track3.mp3, copia y pega la línea de arriba y cambia el número
+            { title: "Red Lagoon", file: "audio/track1.mp3" },
+            { title: "The Rust Belt", file: "audio/track2.mp3" }
         ];
 
         let currentTrack = 0;
         let isPlaying = false;
-        
-        const audio = document.getElementById('audioPlayer');
-        const playBtn = document.getElementById('playBtn');
-        const playIcon = document.getElementById('playIcon');
-        const progressBar = document.getElementById('progressBar');
-        const titleText = document.getElementById('songTitle');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
 
-        // Cargar canción inicial
+        const audio = document.getElementById('audioPlayer');
+        const dock = document.getElementById('musicDock');
+        const toggleBtn = document.getElementById('toggleMusicBtn');
+        const titleText = document.getElementById('songTitle');
+        const playBtn = document.getElementById('playBtn');
+        const progressFill = document.getElementById('progressFill');
+
+        // Función para ABRIR/CERRAR el panel
+        toggleBtn.addEventListener('click', (e) => {
+            // Si hacemos click en el botón principal...
+            if(e.target.closest('#toggleMusicBtn')) {
+                dock.classList.toggle('active'); // Abre o cierra
+            }
+        });
+
+        // Cargar canción
         function loadSong(index) {
             titleText.innerText = playlist[index].title;
             audio.src = playlist[index].file;
         }
-        
-        // Iniciamos
         loadSong(currentTrack);
-        audio.volume = 0.4; // Volumen al 40%
+        audio.volume = 0.5;
 
-        // Botón Play/Pausa
+        // Play / Pause
         playBtn.addEventListener('click', () => {
             if (isPlaying) {
                 audio.pause();
-                playIcon.innerText = "▶"; // Icono Play
+                playBtn.innerText = "▶";
+                toggleBtn.classList.remove('playing'); // Deja de girar
             } else {
                 audio.play();
-                playIcon.innerText = "❚❚"; // Icono Pausa
+                playBtn.innerText = "❚❚";
+                toggleBtn.classList.add('playing'); // Empieza a girar
             }
             isPlaying = !isPlaying;
         });
 
-        // Actualizar barra de progreso
-        audio.addEventListener('timeupdate', () => {
-            if(audio.duration) {
-                const progress = (audio.currentTime / audio.duration) * 100;
-                progressBar.value = progress;
-            }
-        });
-
-        // Mover la barra manualmente
-        progressBar.addEventListener('input', () => {
-            const seekTime = (audio.duration / 100) * progressBar.value;
-            audio.currentTime = seekTime;
-        });
-
-        // Botón Siguiente
-        nextBtn.addEventListener('click', () => {
+        // Siguiente
+        document.getElementById('nextBtn').addEventListener('click', () => {
             currentTrack = (currentTrack + 1) % playlist.length;
             loadSong(currentTrack);
             if(isPlaying) audio.play();
         });
 
-        // Botón Anterior
-        prevBtn.addEventListener('click', () => {
+        // Anterior
+        document.getElementById('prevBtn').addEventListener('click', () => {
             currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
             loadSong(currentTrack);
             if(isPlaying) audio.play();
         });
 
-        // Auto-siguiente al terminar
+        // Barra de progreso automática
+        audio.addEventListener('timeupdate', () => {
+            if(audio.duration) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = percent + "%";
+            }
+        });
+
+        // Auto-siguiente
         audio.addEventListener('ended', () => {
-            nextBtn.click();
+            document.getElementById('nextBtn').click();
         });
     </script>
 </html>
+
