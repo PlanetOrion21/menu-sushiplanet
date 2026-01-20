@@ -1654,5 +1654,21 @@
         audio.addEventListener('ended', () => {
             document.getElementById('nextBtn').click();
         });
+       // --- CÓDIGO NUEVO: AUTO-PAUSA AL SALIR ---
+        document.addEventListener("visibilitychange", () => {
+            // Si la página se oculta (bloqueo o cambio de pestaña)
+            if (document.hidden) {
+                if(isPlaying) {
+                    audio.pause();
+                    playBtn.innerText = "▶"; // Cambia icono a Play
+                    toggleBtn.classList.remove('playing'); // Deja de girar
+                    // Ojo: NO cambiamos la variable 'isPlaying' aquí para que el usuario
+                    // tenga que darle play manualmente si vuelve, o para saber que estaba sonando.
+                    // Pero para hacerlo simple, actualizamos el estado:
+                    isPlaying = false;
+                }
+            }
+        });
     </script>
 </html>
+
