@@ -20,6 +20,7 @@
             overflow-x: hidden;
         }
 
+        /* --- ESTRELLAS --- */
         .stars {
             position: fixed;
             top: 0;
@@ -50,6 +51,7 @@
             padding: 40px 20px;
         }
 
+        /* --- HEADER Y LOGO --- */
         .header {
             text-align: center;
             margin-bottom: 60px;
@@ -74,7 +76,6 @@
             50% { transform: translateY(-10px); }
         }
 
-        /* Título principal debajo del logo */
         .site-title {
             font-size: 48px;
             font-weight: 900;
@@ -86,36 +87,16 @@
             background-clip: text;
             text-transform: uppercase;
             letter-spacing: 4px;
-            /* Glow intenso y animado */
-            text-shadow:
-                0 0 8px rgba(0,217,255,0.85),
-                0 0 20px rgba(255,105,180,0.75),
-                0 0 34px rgba(255,105,180,0.55);
+            text-shadow: 0 0 8px rgba(0,217,255,0.85), 0 0 20px rgba(255,105,180,0.75);
             animation: glowPulse 2.5s ease-in-out infinite;
         }
 
         @keyframes glowPulse {
-            0% {
-                text-shadow: 0 0 6px rgba(0,217,255,0.6), 0 0 16px rgba(255,105,180,0.6), 0 0 30px rgba(255,105,180,0.3);
-                transform: translateY(0);
-            }
-            50% {
-                text-shadow: 0 0 14px rgba(0,217,255,0.95), 0 0 26px rgba(255,105,180,0.95), 0 0 44px rgba(255,105,180,0.7);
-                transform: translateY(-2px);
-            }
-            100% {
-                text-shadow: 0 0 6px rgba(0,217,255,0.6), 0 0 16px rgba(255,105,180,0.6), 0 0 30px rgba(255,105,180,0.3);
-                transform: translateY(0);
-            }
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-2px); text-shadow: 0 0 14px rgba(0,217,255,0.95), 0 0 26px rgba(255,105,180,0.95); }
         }
 
-        @media (max-width: 768px) {
-            .site-title {
-                font-size: 32px;
-                letter-spacing: 2px;
-            }
-        }
-
+        /* --- SECCIONES Y GRID --- */
         .menu-section {
             margin-bottom: 50px;
         }
@@ -134,6 +115,7 @@
             text-shadow: 0 0 30px rgba(0, 217, 255, 0.5);
         }
 
+        /* Grid General (Para Sushi Grande) */
         .promo-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
@@ -141,6 +123,16 @@
             margin-bottom: 40px;
         }
 
+        /* Grid Especial para Agregados (Más pequeños, lado a lado) */
+        .grid-agregados {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 25px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        /* --- TARJETAS --- */
         .promo-card {
             background: rgba(10, 14, 39, 0.7);
             border: 3px solid #00d9ff;
@@ -152,24 +144,12 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            height: 100%; /* Para que en grid se vean iguales */
         }
 
         .promo-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 0 50px rgba(0, 217, 255, 0.6);
-        }
-
-        .promo-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            width: 20px;
-            height: 20px;
-            background: #ff00ff;
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
-            z-index: 10;
         }
 
         .promo-image-container {
@@ -249,9 +229,9 @@
             left: 0;
             color: #00d9ff;
             font-size: 20px;
-            line-height: 1.2;
         }
 
+        /* --- BOTÓN WHATSAPP --- */
         .whatsapp-btn {
             display: flex;
             align-items: center;
@@ -275,41 +255,7 @@
             transform: translateY(-2px);
         }
 
-        .whatsapp-icon {
-            font-size: 24px;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px solid rgba(0, 217, 255, 0.3);
-            color: #00d9ff;
-            font-size: 14px;
-        }
-
-        @media (max-width: 768px) {
-            .promo-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .logo-image {
-                width: 220px;
-            }
-            
-            .promo-title {
-                font-size: 24px;
-            }
-
-            .promo-image-container {
-                height: 200px;
-            }
-
-            .section-title {
-                font-size: 28px;
-            }
-        }
-        /* Filtros de navegación */
+        /* --- FILTROS --- */
         .filters-container {
             display: flex;
             flex-wrap: wrap;
@@ -336,7 +282,6 @@
             font-weight: bold;
             font-size: 14px;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .filter-btn:hover {
@@ -352,138 +297,80 @@
             animation: pulse 2s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 0, 255, 0.5); }
-            50% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.8); }
-        }
-
-        .filter-icon {
-            font-size: 18px;
-        }
-
-        @media (max-width: 768px) {
-            .filters-container {
-                gap: 10px;
-                padding: 20px 15px;
-            }
-            
-            .filter-btn {
-                padding: 10px 15px;
-                font-size: 13px;
-            }
-        }
-        /* Ofertas especiales */
-        .ofertas-banner {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-bottom: 40px;
-        }
-
-        .oferta-destacada {
-            background: linear-gradient(135deg, rgba(255, 0, 255, 0.1), rgba(255, 105, 180, 0.1));
-            border: 3px solid #ff00ff;
-            border-radius: 20px;
-            padding: 30px;
-            position: relative;
-            overflow: hidden;
-            animation: glow 3s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(255, 0, 255, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(255, 0, 255, 0.6); }
-        }
-
-        .oferta-badge {
-            position: absolute;
-            top: -5px;
-            right: 20px;
-            background: linear-gradient(135deg, #ff00ff, #ff69b4);
+        /* --- BOTÓN CUPÓN NEÓN --- */
+        .btn-cupon-especial {
+            background: linear-gradient(45deg, #ff0066, #9900ff, #00fff2);
+            background-size: 200% 200%;
             color: white;
-            padding: 8px 20px;
-            border-radius: 0 0 15px 15px;
-            font-weight: bold;
-            font-size: 12px;
-            box-shadow: 0 5px 15px rgba(255, 0, 255, 0.5);
-        }
-
-        .oferta-titulo {
-            color: #ff69b4;
-            font-size: 24px;
-            margin: 20px 0 15px;
-            text-shadow: 0 0 10px rgba(255, 105, 180, 0.5);
-        }
-
-        .oferta-descripcion {
-            color: #e0e0e0;
-            font-size: 16px;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .oferta-precio {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .precio-antes {
-            color: #888;
-            text-decoration: line-through;
+            padding: 18px 35px;
             font-size: 20px;
+            font-weight: 900;
+            border: 3px solid #00fff2;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 0 10px #ff0066, 0 0 30px #9900ff, 0 0 60px #00fff2, inset 0 0 20px rgba(255,255,255,0.5);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px #00fff2;
+            text-transform: uppercase;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: latidoGlow 2s infinite, moverColores 3s ease infinite;
         }
 
-        .precio-ahora {
-            color: #00fff2;
-            font-size: 32px;
-            font-weight: bold;
-            text-shadow: 0 0 15px rgba(0, 255, 242, 0.6);
+        .btn-cupon-especial:hover {
+            transform: scale(1.1) rotate(-2deg);
+            box-shadow: 0 0 20px #ff0066, 0 0 50px #9900ff, 0 0 100px #00fff2, inset 0 0 30px white;
         }
 
-        .descuento-badge {
-            background: linear-gradient(135deg, #ff0000, #ff6b00);
-            color: white;
-            padding: 10px 25px;
-            border-radius: 10px;
-            font-size: 28px;
-            font-weight: bold;
-            box-shadow: 0 5px 20px rgba(255, 0, 0, 0.4);
+        .btn-bloqueado {
+            background: linear-gradient(45deg, #2c3e50, #4ca1af) !important;
+            box-shadow: 0 0 15px #00fff2, inset 0 0 20px rgba(0,0,0,0.5) !important;
+            animation: none !important;
+            border-color: #00fff2 !important;
+            color: #aaa !important;
+            cursor: not-allowed;
+            transform: none !important;
         }
 
-        .oferta-validez {
-            color: #00d9ff;
-            font-size: 14px;
-            font-style: italic;
-            margin-top: 10px;
+        @keyframes latidoGlow {
+            0% { transform: scale(1); box-shadow: 0 0 10px #ff0066, 0 0 30px #9900ff; }
+            50% { transform: scale(1.05); box-shadow: 0 0 30px #ff0066, 0 0 60px #00fff2; }
+            100% { transform: scale(1); box-shadow: 0 0 10px #ff0066, 0 0 30px #9900ff; }
         }
 
-        @media (max-width: 768px) {
-            .ofertas-banner {
-                grid-template-columns: 1fr;
-            }
-            
-            .oferta-titulo {
-                font-size: 20px;
-            }
-            
-            .precio-ahora {
-                font-size: 26px;
-            }
+        @keyframes moverColores {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
-        html {
-            scroll-behavior: smooth;
+                /* --- ESTILOS QUE FALTABAN PARA EL BOTÓN BLOQUEADO --- */
+        .btn-bloqueado {
+            background: linear-gradient(45deg, #2c3e50, #4ca1af) !important;
+            box-shadow: 
+                0 0 15px #00fff2,
+                inset 0 0 20px rgba(0,0,0,0.5) !important; /* Sombra interna */
+            animation: none !important; /* Sin latido */
+            border-color: #00fff2 !important;
+            color: #aaa !important; /* Texto gris */
+            text-shadow: none !important;
+            opacity: 0.9;
+            cursor: not-allowed;
+            transform: none !important; 
         }
 
-        /* Botón Volver Arriba (abajo-derecha) */
+        /* Animación de movimiento de colores para el botón activo */
+        @keyframes moverColores {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* --- BOTÓN VOLVER ARRIBA --- */
         .back-to-top {
             position: fixed;
             bottom: 20px;
             right: 20px;
             width: 56px;
             height: 56px;
-            display: none; /* se muestra con JS */
+            display: none;
             align-items: center;
             justify-content: center;
             border-radius: 50%;
@@ -496,14 +383,15 @@
             z-index: 999;
         }
 
-        .back-to-top.show {
-            display: flex;
-            animation: fadeIn 0.25s ease;
-        }
+        .back-to-top.show { display: flex; animation: fadeIn 0.25s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
+        /* Media Queries Celular */
+        @media (max-width: 768px) {
+            .site-title { font-size: 32px; }
+            .promo-grid { grid-template-columns: 1fr; }
+            .grid-agregados { grid-template-columns: 1fr; } /* En celular, 1 columna */
+            .logo-image { width: 220px; }
         }
     </style>
 </head>
@@ -518,106 +406,49 @@
             </div>
             <h1 class="site-title">Sushi Planet</h1>
         </div>
-        <!-- FILTROS DE NAVEGACIÓN -->
+
         <div class="filters-container">
-            <a href="#ofertas" class="filter-btn filter-btn-special">
-                <span class="filter-icon">🎁</span>
-                Ofertas Especiales
-            </a>
-            <a href="#galacticas" class="filter-btn">
-                <span class="filter-icon">🌟</span>
-                Galácticas
-            </a>
-            <a href="#fritas" class="filter-btn">
-                <span class="filter-icon">🔥</span>
-                Fritas
-            </a>
-            <a href="#basicas" class="filter-btn">
-                <span class="filter-icon">✨</span>
-                Básicas
-            </a>
-            <a href="#acevichadas" class="filter-btn">
-                <span class="filter-icon">🌊</span>
-                Acevichadas
-            </a>
-            <a href="#vegetarianas" class="filter-btn">
-                <span class="filter-icon">🌱</span>
-                Vegetarianas
-            </a>
-            <a href="#ceviche" class="filter-btn">
-                <span class="filter-icon">🍣</span>
-                Ceviches
-            </a>
-            <a href="#handrolls" class="filter-btn">
-                <span class="filter-icon">🌯</span>
-                Handrolls
-            </a>
-            <a href="#eleccion" class="filter-btn">
-                <span class="filter-icon">🎯</span>
-                A Elección
-            </a>
-            <a href="#burguer" class="filter-btn">
-                <span class="filter-icon">🍔</span>
-                Sushi Burguer
-            </a>
-            <a href="#agregados" class="filter-btn">
-                <span class="filter-icon">🍤</span>
-                Agregados Fritos
-            </a>
-            <a href="#cambios-extras" class="filter-btn">
-                <span class="filter-icon">➕</span>
-                Cambios y Extras
-            </a>
-            <a href="#bebestibles" class="filter-btn">
-                <span class="filter-icon">🥤</span>
-                Bebestibles
-            </a>
+            <a href="#ofertas" class="filter-btn filter-btn-special"><span class="filter-icon">🎁</span> Ofertas Especiales</a>
+            <a href="#galacticas" class="filter-btn"><span class="filter-icon">🌟</span> Galácticas</a>
+            <a href="#fritas" class="filter-btn"><span class="filter-icon">🔥</span> Fritas</a>
+            <a href="#basicas" class="filter-btn"><span class="filter-icon">✨</span> Básicas</a>
+            <a href="#acevichadas" class="filter-btn"><span class="filter-icon">🌊</span> Acevichadas</a>
+            <a href="#vegetarianas" class="filter-btn"><span class="filter-icon">🌱</span> Vegetarianas</a>
+            <a href="#ceviche" class="filter-btn"><span class="filter-icon">🍣</span> Ceviches</a>
+            <a href="#handrolls" class="filter-btn"><span class="filter-icon">🌯</span> Handrolls</a>
+            <a href="#eleccion" class="filter-btn"><span class="filter-icon">🎯</span> Rolls a Elección</a>
+            <a href="#burguer" class="filter-btn"><span class="filter-icon">🍔</span> Sushi Burguer</a>
+            <a href="#agregados" class="filter-btn"><span class="filter-icon">🍤</span> Agregados Fritos</a>
+            <a href="#cambios-extras" class="filter-btn"><span class="filter-icon">➕</span> Cambios y Extras</a>
+            <a href="#bebestibles" class="filter-btn"><span class="filter-icon">🥤</span> Bebestibles</a>
         </div>
 
-        <!-- OFERTAS ESPECIALES -->
+        <div class="cupon-section" style="text-align: center; margin: 30px 0;">
+            <button id="btnCupon" class="btn-cupon-especial">Cargando promoción...</button>
+            <p id="msgError" style="color: #ff0055; display: none; margin-top: 10px; font-weight: bold; text-shadow: 0 0 5px red;">❌ Ya utilizaste este cupón anteriormente.</p>
+        </div>
+
         <div class="menu-section" id="ofertas">
-        <div class="section-title">🎁 Ofertas Especiales 🎁</div>
-        <div class="ofertas-banner" id="ofertas">
-                <div class="oferta-destacada">
-                    <div class="oferta-badge">¡OFERTA LIMITADA!</div>
-                    <h3 class="oferta-titulo">🌟 Proximamente... 🌟</h3>
-                    <p class="oferta-descripcion"> Proximamente... </p>
-                    <div class="oferta-precio">
-                        <span class="precio-antes">000</span>
-                        <span class="precio-ahora">000</span>
+            <div class="section-title">🎁 Ofertas Especiales 🎁</div>
+            <div class="promo-grid"> <div class="promo-card">
+                    <div class="promo-content" style="text-align: center;">
+                        <div class="promo-title">¡PRÓXIMAMENTE!</div>
+                        <p>Atento a nuestras redes para las mejores ofertas de apertura.</p>
                     </div>
-                    <p class="oferta-validez"> Proximamente... </p>
-                </div>
-
-                <div class="oferta-destacada">
-                    <div class="oferta-badge">DESCUENTO</div>
-                    <h3 class="oferta-titulo">🔥 Proximamente... 🔥</h3>
-                    <p class="oferta-descripcion"> Proximamente... </p>
-                    <div class="oferta-precio">
-                        <span class="descuento-badge"> 0% </span>
-                    </div>
-                    <p class="oferta-validez"> Proximamente... </p>
-                </div>
-
-                <!-- "oferta-destacada" -->
+                 </div>
             </div>
         </div>
-<!-- PROMOCIONES PREMIUM -->
+
         <div class="menu-section" id="galacticas">
             <div class="section-title">🌟 Promociones Galacticas 🌟</div>
             <div class="promo-grid">
-                
-                <!-- BING BANG -->
                 <div class="promo-card">
                     <div class="promo-image-container">
-                        <img src="images\Bing_Bang.jpg" alt="Bing Bang" class="promo-image">
+                        <img src="images/Bing_Bang.jpg" alt="Bing Bang" class="promo-image">
                     </div>
                     <div class="promo-content">
-                        <div class="promo-title">Bing Bang</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">100 PIEZAS</span>
-                            <span class="promo-price">$35.000</span>
-                        </div>
+                        <div class="promo-title">Big Bang</div>
+                        <div class="promo-info"><span class="promo-pieces">100 PIEZAS</span><span class="promo-price">$37.000</span></div>
                         <ul class="promo-items">
                             <li>20 Panko: Pollo, Palta, Queso crema.</li>
                             <li>20 Panko: Pollo, Morrón, Queso crema.</li>
@@ -628,25 +459,32 @@
                             <li>10 Queso: Camarón Crispy, Palta.</li>
                             <li>10 Gyosas de Pollo.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Bing%20Bang*%20(100%20piezas%20-%20%2435.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Bing_Bang.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Big%20Bang*%20(100%20piezas%20-%20%2437.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- STELLAR PREMIUM -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Estelar.jpg" alt="Stellar Premium" class="promo-image">
+                    <div class="promo-image-container"><img src="images/Stella.jpg" alt="Stella" class="promo-image"></div>
+                    <div class="promo-content">
+                        <div class="promo-title">Stella</div>
+                        <div class="promo-info"><span class="promo-pieces">75 PIEZAS</span><span class="promo-price">$31.000</span></div>
+                        <ul class="promo-items">
+                            <li>10 Panko: Pollo, Palta, Queso crema.</li>
+                            <li>10 Panko: Camarón, Palta, Queso crema.</li>
+                            <li>10 Panko: Salmón, Cebollín, Queso crema.</li>
+                            <li>10 Palta: Camarón, Palmito, Queso crema.</li>
+                            <li>10 Ciboulette: Kanikama, Palta, Queso crema.</li>
+                            <li>10 Jamon Serrano: Choclo baby, Morron, Queso crema.</li>
+                            <li>10 Queso: Salmón Crispy, Palta.</li>
+                            <li>5 Gyosas de Pollo.</li>
+                        </ul>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Stella*%20(75%20piezas%20-%20%2431.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
+                </div>
+                <div class="promo-card">
+                    <div class="promo-image-container"><img src="images/Estelar.jpg" alt="Stellar Premium" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Estelar</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">60 PIEZAS</span>
-                            <span class="promo-price">$27.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">60 PIEZAS</span><span class="promo-price">$27.000</span></div>
                         <ul class="promo-items">
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                             <li>10 Panko: Pollo, Palta, Queso crema.</li>
@@ -655,211 +493,119 @@
                             <li>10 Palta: Camarón Crispy, Cebollín, Queso crema. </li>
                             <li>10 Gyozas de Camaron.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Estelar*%20(60%20PIEZAS%20-%20%2427.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Estelar.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Estelar*%20(60%20PIEZAS%20-%20%2427.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- COSMIC FUSION -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Fusion_Cosmica.jpg" alt="Cosmic Fusion" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Fusion_Cosmica.jpg" alt="Cosmic Fusion" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Fusion Cosmica</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">40 PIEZAS</span>
-                            <span class="promo-price">$15.990</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">40 PIEZAS</span><span class="promo-price">$15.990</span></div>
                         <ul class="promo-items">
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                             <li>10 Palta: Camaron, Choclo baby, Queso crema.</li>
                             <li>10 Queso: Salmon crispy, Palta.</li>
                             <li>10 Jamón serrano: Palmito, Morrón, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Fusion%20Cosmica*%20(40%20PIEZAS%20-%20%2415.990)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Fusion_Cosmica.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Fusion%20Cosmica*%20(40%20PIEZAS%20-%20%2415.990)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- METEOR DELUXE -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Meteoro_Deluxe.jpg" alt="Meteor Deluxe" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Meteoro_Deluxe.jpg" alt="Meteor Deluxe" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Meteoro Deluxe</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$13.990</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$13.990</span></div>
                         <ul class="promo-items">
                             <li>10 Panko: Pollo, Palta, Queso crema.</li>
                             <li>10 Queso "Topping Takis": Salmón crispy Palta, Queso crema.</li>
                             <li>10 Palta: Camarón, Cebollín, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Meteoro%20Deluxe*%20(30%20PIEZAS%20-%20%2413.990)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Meteoro_Deluxe.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Meteoro%20Deluxe*%20(30%20PIEZAS%20-%20%2413.990)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- PROMOCIONES FRITAS -->
         <div class="menu-section" id="fritas">
             <div class="section-title">🔥 Promociones Fritas 🔥</div>
             <div class="promo-grid">
-
-                <!-- NEBULA BOX -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Nebula_Box.jpg" alt="Nebula Box" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Nebula_Box.jpg" alt="Nebula Box" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Nebula Box</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$12.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$12.000</span></div>
                         <ul class="promo-items">
                             <li>10 Panko: Pollo, Palta, Queso crema.</li>
                             <li>10 Panko: Pollo, Choclo baby, Queso crema.</li>
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Nebula%20Box*%20(30%20piezas%20-%20%2412.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Nebula_Box.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Nebula%20Box*%20(30%20piezas%20-%20%2412.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- NOVA CRISPY -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Nova_Crispy.jpg" alt="Nova Crispy" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Nova_Crispy.jpg" alt="Nova Crispy" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Nova Crispy</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$13.500</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$13.500</span></div>
                         <ul class="promo-items">
                             <li>10 Panko: Salmon, Morrón, Queso crema.</li>
                             <li>10 Panko: Pollo, Palta, Queso crema.</li>
                             <li>10 Panko: Camaron, Choclo baby, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Nova%20Crispy*%20(30%20piezas%20-%20%2413.500)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Nova_Crispy.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Nova%20Crispy*%20(30%20piezas%20-%20%2413.500)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- SOLAR PANKO -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Solar_Panko.jpg" alt="Solar Panko" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Solar_Panko.jpg" alt="Solar Panko" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Solar Panko</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">55 PIEZAS</span>
-                            <span class="promo-price">$17.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">55 PIEZAS</span><span class="promo-price">$17.000</span></div>
                         <ul class="promo-items">
                             <li>20 Panko: Pollo, Morrón, Queso crema.</li>
                             <li>20 Panko: Pollo, Palta, Queso crema.</li>
                             <li>10 Panko: Kanikama, Choclo baby, Queso crema.</li>
                             <li>5 Arrollados Primavera</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Solar%20Panko*%20(54%20piezas%20-%20%2417.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Solar_Panko.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Solar%20Panko*%20(54%20piezas%20-%20%2417.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- PROMOCIONES BASICAS -->
         <div class="menu-section" id="basicas">
             <div class="section-title">✨ Promociones BASICAS ✨</div>
             <div class="promo-grid">
-
-                <!-- ORBIT FUSION -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Fusion_Orbital.jpg" alt="Fusion Orbital" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Fusion_Orbital.jpg" alt="Fusion Orbital" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Fusion Orbital</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$12.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$12.000</span></div>
                         <ul class="promo-items">
                             <li>10 Palta: Pollo, Ciboulette, Queso crema.</li>
                             <li>10 Queso: Kanikama, palta.</li>
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Fusion%20Orbital*%20(30%20piezas%20-%20%2412.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Fusion_Orbital.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Fusion%20Orbital*%20(30%20piezas%20-%20%2412.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- LUNAR WAVE -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Onda_Lunar.jpg" alt="Onda Lunar" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Onda_Lunar.jpg" alt="Onda Lunar" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Onda Lunar</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$11.500</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$11.500</span></div>
                         <ul class="promo-items">
                             <li>10 Sésamo: Pollo, Cebollin, Queso crema.</li>
                             <li>10 Nori: Kanikama, Palta, Queso crema.</li>
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Onda%20Lunar*%20(30%20piezas%20-%20%2411.500)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Onda_Lunar.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Onda%20Lunar*%20(30%20piezas%20-%20%2411.500)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- ECLIPSE FAMILIAR -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Eclipse_Familiar.jpg" alt="Eclipse Familiar" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Eclipse_Familiar.jpg" alt="Eclipse Familiar" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Eclipse Familiar</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">55 PIEZAS</span>
-                            <span class="promo-price">$15.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">55 PIEZAS</span><span class="promo-price">$15.000</span></div>
                         <ul class="promo-items">
                             <li>10 Sésamo: Palmito, Cibollin, Queso crema.</li>
                             <li>20 Panko: Pollo, Morrón, Queso crema.</li>
@@ -867,455 +613,302 @@
                             <li>10 Palta: Pollo, Ciboulette, Queso crema.</li>
                             <li>5 Arrollados Primavera.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Eclipse%20Familiar*%20(55%20piezas%20-%20%2415.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Eclipse_Familiar.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Eclipse%20Familiar*%20(55%20piezas%20-%20%2415.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Nebulosa_Palta.jpg" alt="Nebulosa Palta" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Nebulosa_Palta.jpg" alt="Nebulosa Palta" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Nebulosa Palta</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$13.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$13.000</span></div>
                         <ul class="promo-items">
                             <li>10 Palta: Camarón, Cebollín, Queso.</li>
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                             <li>10 Panko: Pollo, Palta, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Nebulosa%20Palta*%20(30%20piezas%20-%20%2413.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Nebulosa_Palta.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Nebulosa%20Palta*%20(30%20piezas%20-%20%2413.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Quasar_Queso.jpg" alt="Quasar Queso" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Quasar_Queso.jpg" alt="Quasar Queso" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Quasar Queso</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$14.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$14.000</span></div>
                         <ul class="promo-items">
                             <li>10 Queso: Salmón crispy, Palta.</li>
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                             <li>10 Panko: Pollo, Palta, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Quasar%20Queso*%20(30%20piezas%20-%20%2414.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Quasar_Queso.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Quasar%20Queso*%20(30%20piezas%20-%20%2414.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Serrano_Supernova.jpg" alt="Serrano Supernova" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Serrano_Supernova.jpg" alt="Serrano Supernova" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Serrano Supernova</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$13.500</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$13.500</span></div>
                         <ul class="promo-items">
                             <li>10 Jamón serrano: Palmito, Morrón, Queso.</li>
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                             <li>10 Panko: Pollo, Palta, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Serrano%20Supernova*%20(30%20piezas%20-%20%2413.500)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Serrano_Supernova.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Serrano%20Supernova*%20(30%20piezas%20-%20%2413.500)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Aurora_Ahumada.jpg" alt="Aurora Ahumada" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Aurora_Ahumada.jpg" alt="Aurora Ahumada" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Aurora Ahumada</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS</span>
-                            <span class="promo-price">$15.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS</span><span class="promo-price">$15.000</span></div>
                         <ul class="promo-items">
                             <li>10 Salmón ahumado: Camarón crispy, Cebollín, Queso.</li>
                             <li>10 Panko: Pollo, Morrón, Queso crema.</li>
                             <li>10 Panko: Pollo, Palta, Queso crema.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Aurora%20Ahumada*%20(30%20piezas%20-%20%2415.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Aurora_Ahumada.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Aurora%20Ahumada*%20(30%20piezas%20-%20%2415.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- PROMOCIONES ACEVICHADAS -->
         <div class="menu-section" id="acevichadas">
             <div class="section-title">🌊 Promociones Acevichadas 🌊</div>
             <div class="promo-grid">
-
-                <!-- GALAXY ROLLS -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/PIEZAS_ACEVICHADO.jpg" alt="Galaxy Rolls" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/PIEZAS_ACEVICHADO.jpg" alt="Galaxy Rolls" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Galaxy Rolls</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">20 PIEZAS ACEVICHADO</span>
-                            <span class="promo-price">$16.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">20 PIEZAS ACEVICHADO</span><span class="promo-price">$16.000</span></div>
                         <ul class="promo-items">
                             <li>A elección de cobertura: Palta, Queso, Salmón ahumado, Jamón serrano, Panko, Nori o Sésamo.</li>
                             <li>10 Piezas Relleno: Pollo, Morron, Queso.</li>
                             <li>10 Piezas Relleno: Pollo, Cebollin, Queso.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Galaxy%20Rolls*%20(20%20PIEZAS%20ACEVICHADO%20-%20%2416.000)%0A%0AMi%20elecci%C3%B3n%20es:%20____%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/PIEZAS_ACEVICHADO.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Galaxy%20Rolls*%20(20%20PIEZAS%20ACEVICHADO%20-%20%2416.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- OCEAN WAVE -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/PIEZA_ACEVICHADO.jpg" alt="Ocean Wave" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/PIEZA_ACEVICHADO.jpg" alt="Ocean Wave" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Ocean Wave</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">10 PIEZAS ACEVICHADO</span>
-                            <span class="promo-price">$8.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">10 PIEZAS ACEVICHADO</span><span class="promo-price">$8.000</span></div>
                         <ul class="promo-items">
                             <li>10 Roll acevichado Relleno: Pollo, Cebollin, Queso</li>
                             <li>Coberturas disponibles: Palta, Queso, Salmón ahumado, Jamón serrano, Panko, Nori, Sésamo.</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Ocean%20Wave*%20(10%20PIEZAS%20ACEVICHADO%20-%20%248.000)%0A%0AMi%20elecci%C3%B3n%20es:%20____%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/PIEZA_ACEVICHADO.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Ocean%20Wave*%20(10%20PIEZAS%20ACEVICHADO%20-%20%248.000)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
             </div>
         </div>
-        <!-- CEVICHES -->
-        <div class="menu-section" id="ceviche"></div>
+
+        <div class="menu-section" id="ceviche">
             <div class="section-title">🍣 Ceviches 🍣</div>
             <div class="promo-grid">
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Ceviche_Sushi_Planet.jpg" alt="Ceviche Sushi Planet" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Ceviche_Sushi_Planet.jpg" alt="Ceviche Sushi Planet" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Ceviche Sushi Planet</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">PORCIÓNES DE 250G, 350G Y 500G</span>
-                            <span class="promo-price">Precios</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">PORCIÓNES DE 250G, 350G Y 500G</span><span class="promo-price">Precios</span></div>
                         <ul class="promo-items">
                             <li>Ceviche de Salmón.</li>
                             <li>-Ceviche de 250G: $3.500</li>
                             <li>-Ceviche de 350G: $4.500</li>
                             <li>-Ceviche de 500G: $7.000</li>
+                            <li>-Ceviche de 1KG: $12.000</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Ceviche%20Sushi%20Planet*%20(1%20PORCI%C3%93N%20-%20%24)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Ceviche_Sushi_Planet.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Ceviche%20Sushi%20Planet*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- PROMOCIONES VEGETARIANAS -->
+
         <div class="menu-section" id="vegetarianas">
             <div class="section-title">🌱 Promociones Vegetarianas 🌱</div>
             <div class="promo-grid">
-
-                <!-- GREEN COSMOS -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Green_Cosmos.jpg" alt="Green Cosmos" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Green_Cosmos.jpg" alt="Green Cosmos" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Green Cosmos</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS VEGETARIANA</span>
-                            <span class="promo-price">$11.500</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS VEGETARIANA</span><span class="promo-price">$11.500</span></div>
                         <ul class="promo-items">
                             <li>10 Palta: Morron, Queso crema, Ciboulette</li>
                             <li>10 Panko: Choclo baby, Morron, Queso crema</li>
                             <li>10 Sésamo: Palmito, Morrón, Queso crema</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Green%20Cosmos*%20(30%20piezas%20vegetariana%20-%20%2411.500)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Green_Cosmos.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Green%20Cosmos*%20(30%20piezas%20vegetariana%20-%20%2411.500)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- VEGGIE PLANET -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Veggie_Planet.jpg" alt="Veggie Planet" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Veggie_Planet.jpg" alt="Veggie Planet" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Veggie Planet</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">30 PIEZAS VEGETARIANA</span>
-                            <span class="promo-price">$11.500</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">30 PIEZAS VEGETARIANA</span><span class="promo-price">$11.500</span></div>
                         <ul class="promo-items">
                             <li>10 Panko: Palta, Morron, Queso crema</li>
                             <li>10 Panko: Choclo baby, Morrón, Queso crema</li>
                             <li>10 Panko: Palmito, Palta, Queso crema</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Veggie%20Planet*%20(30%20piezas%20vegetariana%20frita%20-%20%2411.500)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Veggie_Planet.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*Veggie%20Planet*%20(30%20piezas%20vegetariana%20frita%20-%20%2411.500)" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
             </div>
         </div>
 
-        <!-- HANDROLLS -->
         <div class="menu-section" id="handrolls">
             <div class="section-title">🌯 Handrolls 🌯</div>
             <div class="promo-grid">
-
-                <!-- HANDROLL CLASICO -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Handroll_Clasico.jpg" alt="Handroll Clásico" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Handroll_Clasico.jpg" alt="Handroll Clásico" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Handroll Clásico</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">1 UNIDAD</span>
-                            <span class="promo-price">$3.500</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">1 UNIDAD</span><span class="promo-price">$3.500</span></div>
                         <ul class="promo-items">
                             <li>Handroll: Pollo o Kanikama + Queso + 1 Vegetal a elección</li>
                             <li>Desde 2 unidades a domicilio (consultar vegetal disponible)</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Handroll%20Cl%C3%A1sico*%20(1%20UNIDAD%20-%20%243.500)%0A%0AMi%20elecci%C3%B3n:%20____%0ACantidad:%20____%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Handroll_Clasico.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Handroll%20Cl%C3%A1sico*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- HANDROLL PREMIUM -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Handroll_Premium.jpg" alt="Handroll Premium" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Handroll_Premium.jpg" alt="Handroll Premium" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Handroll Premium</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">1 UNIDAD</span>
-                            <span class="promo-price">$5.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">1 UNIDAD</span><span class="promo-price">$5.000</span></div>
                         <ul class="promo-items">
                             <li>Handroll: Salmón o Camarón + Queso + 1 Vegetal a elección</li>
                             <li>Desde 2 unidades a domicilio (consultar vegetal disponible)</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Handroll%20Premium*%20(salm%C3%B3n%20o%20camar%C3%B3n%20-%20%245.000)%0A%0AMi%20elecci%C3%B3n:%20____%0ACantidad:%20____%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Handroll_Premium.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Handroll%20Premium*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- PROMO 3 HANDROLLS -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Promo_Handrolls.jpg" alt="Promo 3 Handrolls" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Promo_Handrolls.jpg" alt="Promo 3 Handrolls" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Promo 3 Handrolls</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">3 UNIDADES</span>
-                            <span class="promo-price">$10.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">3 UNIDADES</span><span class="promo-price">$10.000</span></div>
                         <ul class="promo-items">
                             <li>3 Handrolls: Pollo o Kanikama + Queso + Morrón o Palta</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20*Promo%203%20Handrolls*%20(3%20UNIDADES%20-%20%2410.000)%0A%0AMi%20elecci%C3%B3n:%20____%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Promo_Handrolls.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20*Promo%203%20Handrolls*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- PROMO 3 PREMIUM -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Promo_HANDROLL_Premium.jpg" alt="Promo 3 Premium" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Promo_HANDROLL_Premium.jpg" alt="Promo 3 Premium" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Promo 3 HANDROLL Premium</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">3 UNIDADES</span>
-                            <span class="promo-price">$14.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">3 UNIDADES</span><span class="promo-price">$14.000</span></div>
                         <ul class="promo-items">
                             <li>3 Handrolls: Salmón o Camarón + Queso + Morrón o Palta</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20*Promo%203%20Premium*%20(3%20UNIDADES%20-%20%2414.000)%0A%0AMi%20elecci%C3%B3n:%20____%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Promo_HANDROLL_Premium.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20*Promo%203%20Premium*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
             </div>
         </div>
-        </div>
-    </div>
-            <!-- ROLLS -->
-        <div div class="menu-section" id="eleccion">
+
+        <div class="menu-section" id="eleccion">
             <div class="section-title">🌯 ROLLS A ELECCIóN 🌯</div>
             <div class="promo-grid">
-
-                <!-- Rolls a eleccion -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Roll_a_eleccion.jpg" alt="Roll a elección" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Roll_a_eleccion.jpg" alt="Roll a elección" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Roll a elección</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">1 UNIDAD</span>
-                            <span class="promo-price">$5.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">1 UNIDAD</span><span class="promo-price">$5.000</span></div>
                         <ul class="promo-items">
                             <li>10 ROLL PIEZAS: Pollo o Kanikama.</li>
                             <li>Desde 2 unidades a domicilio (consultar vegetal disponible)</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Roll%20a%20elecci%C3%B3n*%20(10%20PIEZAS%20-%20%245.000)%0A%0AMi%20elecci%C3%B3n:%20____%0ACantidad:%20____%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Roll_a_eleccion.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Roll%20a%20elecci%C3%B3n*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
-
-                <!-- ROLL PREMIUM -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/Roll_a_eleccion_S.jpg" alt="Roll a elección Premium" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/Roll_a_eleccion_S.jpg" alt="Roll a elección Premium" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">Roll a elección Premium</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">1 UNIDAD</span>
-                            <span class="promo-price">$5.500</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">1 UNIDAD</span><span class="promo-price">$5.500</span></div>
                         <ul class="promo-items">
                             <li>10 PIEZAS ROLL : Salmon o Camaron</li>
                             <li>Desde 2 unidades a domicilio (consultar vegetal disponible)</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Roll%20a%20elecci%C3%B3n%20Premium*%20(10%20PIEZAS%20-%20%245.000)%0A%0AMi%20elecci%C3%B3n:%20____%0ACantidad:%20____%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/Roll_a_eleccion_S.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Roll%20a%20elecci%C3%B3n%20Premium*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <div class="promo-image-container"><img src="images/Rolls_para_dos.jpg" alt="Rolls para dos" class="promo-image"></div>
+                    <div class="promo-content">
+                        <div class="promo-title">Rolls para dos</div>
+                        <div class="promo-info"><span class="promo-pieces">20 PIEZAS</span><span class="promo-price">$10.000</span></div>
+                        <ul class="promo-items">
+                            <li>10 Piezas Panko: Pollo, Palta, Queso crema.</li>
+                            <li>10 Piezas Palta: Camarón, Cibullet, Queso crema.</li>
+                        </ul>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Rolls%20para%20dos*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <div class="promo-image-container"><img src="images/Rolls_para_dos_S.jpg" alt="Rolls para dos S" class="promo-image"></div>
+                    <div class="promo-content">
+                        <div class="promo-title">Rolls para dos Premium</div>
+                        <div class="promo-info"><span class="promo-pieces">20 PIEZAS</span><span class="promo-price">$12.000</span></div>
+                        <ul class="promo-items">
+                            <li>10 Piezas Panko: Pollo, Morron, Queso crema.</li>
+                            <li>10 Piezas Palta: Salmon Crispy, Palta, Queso crema.</li>
+                        </ul>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20el%20*Rolls%20para%20dos%20Premium*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-                <!-- HANDROLLS -->
+
         <div class="menu-section" id="burguer">
             <div class="section-title">🍔 SUSHI BURGUER 🍔</div>
             <div class="promo-grid">
-
-                <!-- HANDROLL CLASICO -->
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/SUSHI_BURGUER.jpg" alt="Sushi Burguer" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/SUSHI_BURGUER.jpg" alt="Sushi Burguer" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">SUSHI BURGUER</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">1 UNIDAD</span>
-                            <span class="promo-price">$7.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">1 UNIDAD</span><span class="promo-price">$7.000</span></div>
                         <ul class="promo-items">
                             <li>Panko: Pollo o Kanikama + Queso + Veguetal a Eleccion.</li>
                             <li>Desde 2 unidades a domicilio (Consultar Vegetal Disponible)</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*SUSHI%20BURGUER*%20(1%20UNIDAD%20-%20%247.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/SUSHI_BURGUER.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*SUSHI%20BURGUER*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
                 <div class="promo-card">
-                    <div class="promo-image-container">
-                        <img src="images/SUSHI_BURGUER_PREMIUM.jpg" alt="Sushi Burguer Premium" class="promo-image">
-                    </div>
+                    <div class="promo-image-container"><img src="images/SUSHI_BURGUER_PREMIUM.jpg" alt="Sushi Burguer Premium" class="promo-image"></div>
                     <div class="promo-content">
                         <div class="promo-title">SUSHI BURGUER PREMIUM</div>
-                        <div class="promo-info">
-                            <span class="promo-pieces">1 UNIDAD</span>
-                            <span class="promo-price">$8.000</span>
-                        </div>
+                        <div class="promo-info"><span class="promo-pieces">1 UNIDAD</span><span class="promo-price">$8.000</span></div>
                         <ul class="promo-items">
                             <li>Panko: Salmon o Camaron + Queso + Veguetal a Eleccion.</li>
                             <li>Desde 2 unidades a domicilio (Consultar Vegetal Disponible)</li>
                         </ul>
-                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*SUSHI%20BURGUER%20PREMIUM*%20(1%20UNIDAD%20-%20%248.000)%0A%0APuedes%20ver%20la%20imagen%20aqu%C3%AD:%20https://mousic3.github.io/menu-sushiplanet/images/SUSHI_BURGUER_PREMIUM.jpg" 
-                           class="whatsapp-btn" target="_blank">
-                            <span class="whatsapp-icon">📱</span>
-                            Pedir por WhatsApp
-                        </a>
+                        <a href="https://wa.me/56955230651?text=Hola!%20Me%20interesa%20la%20promoci%C3%B3n%20*SUSHI%20BURGUER%20PREMIUM*" class="whatsapp-btn" target="_blank"><span class="whatsapp-icon">📱</span> Pedir por WhatsApp</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-      <!-- AGREGADOS FRITOS -->
         <div class="menu-section" id="agregados">
             <div class="section-title">🍤 Agregados Fritos 🍤</div>
-            <div class="promo-grid">
+            <div class="grid-agregados"> <div class="promo-card">
+                    <div class="promo-image-container"><img src="images/Papas_Pollo.jpg" alt="Papas Pollo" class="promo-image"></div>
+                    <div class="promo-content">
+                        <div class="promo-title">Papas Fritas con Pollo</div>
+                        <div class="promo-info"><span class="promo-pieces">PORCIÓN</span><span class="promo-price">$6.990</span></div>
+                        <ul class="promo-items"><li>Papas fritas con trozos de pollo crispy</li></ul>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <div class="promo-image-container"><img src="images/Salchipapas.jpg" alt="Salchipapas" class="promo-image"></div>
+                    <div class="promo-content">
+                        <div class="promo-title">Salchipapas</div>
+                        <div class="promo-info"><span class="promo-pieces">PORCIÓN</span><span class="promo-price">$5.000</span></div>
+                        <ul class="promo-items"><li>Papas Fritas con Vianesas</li></ul>
+                    </div>
+                </div>
                 <div class="promo-card">
                     <div class="promo-content">
                         <div class="promo-title">Agregados Fritos</div>
@@ -1325,17 +918,15 @@
                             <li>12 Gyosas Camarón <span style="float:right; font-weight:bold; color:#00fff2;">$7.000</span></li>
                             <li>10 Camarones Crispy <span style="float:right; font-weight:bold; color:#00fff2;">$5.000</span></li>
                             <li>6 Empanadas de Queso <span style="float:right; font-weight:bold; color:#00fff2;">$2.000</span></li>
-                            <li>Porcion de Salchipapas <span style="float:right; font-weight:bold; color:#00fff2;">$5.000</span></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- CAMBIOS Y EXTRAS -->
         <div class="menu-section" id="cambios-extras">
             <div class="section-title">➕ Cambios y Extras ➕</div>
-            <div class="promo-grid">
+            <div class="grid-agregados">
                 <div class="promo-card">
                     <div class="promo-content">
                         <div class="promo-title">Cambios y Extras</div>
@@ -1348,11 +939,11 @@
                     </div>
                 </div>
             </div>
+        </div>
 
-        <!-- BEBESTIBLES -->
         <div class="menu-section" id="bebestibles">
             <div class="section-title">🥤 Bebestibles 🥤</div>
-            <div class="promo-grid">
+            <div class="grid-agregados">
                 <div class="promo-card">
                     <div class="promo-content">
                         <div class="promo-title">Bebestibles</div>
@@ -1364,67 +955,110 @@
                 </div>
             </div>
         </div>
-
-    <!-- Botón Volver Arriba -->
-    <button id="backToTop" class="back-to-top" aria-label="Volver arriba">↑</button>
+    </div> <button id="backToTop" class="back-to-top" aria-label="Volver arriba">↑</button>
 
     <script>
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const numberOfStars = 100;
-
             for (let i = 0; i < numberOfStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                
                 const size = Math.random() * 3 + 1;
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
-                
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
-                
                 star.style.animationDelay = Math.random() * 3 + 's';
-                
                 starsContainer.appendChild(star);
             }
         }
-
         createStars();
 
-        // Back to top button behavior
         const backToTop = document.getElementById('backToTop');
-
-        // Mostrar/ocultar botón según scroll
         window.addEventListener('scroll', () => {
             if (window.scrollY > 250) backToTop.classList.add('show');
             else backToTop.classList.remove('show');
         });
-
-        // Al hacer click, subir suavemente al inicio
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
     </script>
-</body>
-<!-- Reproductor de Música -->
-<audio id="audioPlayer"></audio>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        // --- CONFIGURA LAS FECHAS AQUÍ ---
+        // (Año, Mes-1, Día) -> Enero es 0, Febrero es 1
+        const fechaInicio = new Date(2026, 0, 29); // 29 de Enero (00:00 hrs)
+        const fechaFin    = new Date(2026, 1, 6);  // 6 de Febrero (00:00 hrs)
+        // Nota: Ponemos día 6 para que el cupón funcione TODO el día 5 hasta la medianoche.
+
+        const hoy = new Date();
+        const btn = document.getElementById('btnCupon');
+
+        // 1. COMPORTAMIENTO DEL CLIC
+        btn.onclick = function() {
+            const fechaActual = new Date(); 
+            
+            if (fechaActual < fechaInicio) {
+                // ANTES DE LA FECHA
+                alert("✋ ¡Aún no es la gran apertura!\nVuelve el 29 de Enero.");
+            } 
+            else if (fechaActual >= fechaFin) {
+                // DESPUÉS DE LA FECHA LÍMITE
+                alert("😢 Lo sentimos, esta promoción finalizó el 5 de Febrero.");
+            }
+            else {
+                // DENTRO DEL RANGO (29 Ene - 5 Feb)
+                verificarCupon();
+            }
+        };
+
+        // 2. APARIENCIA VISUAL (Texto y Colores)
+        if (hoy < fechaInicio) {
+            // ESTADO: ESPERA
+            btn.innerHTML = "🔒 DESBLOQUEA EL <strong>29 DE ENERO</strong>";
+            btn.classList.add('btn-bloqueado');
+        } 
+        else if (hoy >= fechaFin) {
+            // ESTADO: EXPIRADO (Se acabó el tiempo)
+            btn.innerHTML = "🚫 PROMOCIÓN FINALIZADA";
+            btn.classList.add('btn-bloqueado'); // Usamos el mismo estilo gris
+            btn.style.opacity = "0.6"; // Un poco más transparente
+        }
+        else {
+            // ESTADO: ACTIVO (¡A canjear!)
+            btn.innerHTML = "🎁 CANJEA TU CUPÓN AQUÍ <br><span style='font-size:12px'>(Válido hasta el 5 Feb)</span>";
+            btn.classList.remove('btn-bloqueado');
+        }
+    });
+
+    function verificarCupon() {
+        if (localStorage.getItem('cupon_canjeado') === 'true') {
+            document.getElementById('msgError').style.display = 'block';
+            document.getElementById('btnCupon').style.opacity = '0.5';
+            document.getElementById('btnCupon').innerText = "CUPÓN YA UTILIZADO";
+            document.getElementById('btnCupon').onclick = null;
+        } else {
+            window.location.href = 'cupon.html';
+        }
+    }
+</script>
+
+    <audio id="audioPlayer"></audio>
 
     <div class="music-dock" id="musicDock">
         <button id="toggleMusicBtn" class="toggle-btn">
             <span id="toggleIcon">🎵</span>
         </button>
-
         <div class="player-panel">
             <div class="panel-content">
                 <div class="song-info-compact" id="songTitle">Cargando...</div>
-                
                 <div class="controls-compact">
                     <button id="prevBtn" class="mini-btn">⏮</button>
                     <button id="playBtn" class="play-btn-compact">▶</button>
                     <button id="nextBtn" class="mini-btn">⏭</button>
                 </div>
-                
                 <div class="progress-container-compact">
                     <div class="progress-bar-fill" id="progressFill"></div>
                 </div>
@@ -1433,152 +1067,40 @@
     </div>
 
     <style>
-        /* Contenedor Principal (Abajo Izquierda) */
         .music-dock {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            z-index: 10000; /* Por encima de todo */
-            display: flex;
-            align-items: center;
+            position: fixed; bottom: 20px; left: 20px; z-index: 10000;
+            display: flex; align-items: center;
         }
-
-        /* Botón Redondo Principal */
         .toggle-btn {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: #0a0e27;
-            border: 2px solid #ff00ff; /* Borde Rosa Neón */
-            color: #ff00ff;
-            font-size: 22px;
-            cursor: pointer;
-            z-index: 2; /* Siempre encima del panel */
-            box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 50px; height: 50px; border-radius: 50%; background: #0a0e27;
+            border: 2px solid #ff00ff; color: #ff00ff; font-size: 22px; cursor: pointer;
+            z-index: 2; box-shadow: 0 0 15px rgba(255, 0, 255, 0.4);
+            display: flex; align-items: center; justify-content: center;
+            transition: all 0.3s;
         }
-
-        .toggle-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(255, 0, 255, 0.8);
-        }
-
-        /* Animación cuando está sonando (Giro suave) */
-        .toggle-btn.playing {
-            animation: spinPulse 3s infinite linear;
-            border-color: #00fff2; /* Cambia a azul cyan */
-            color: #00fff2;
-        }
-
-        @keyframes spinPulse {
-            0% { box-shadow: 0 0 5px rgba(0, 255, 242, 0.2); }
-            50% { box-shadow: 0 0 20px rgba(0, 255, 242, 0.8); }
-            100% { box-shadow: 0 0 5px rgba(0, 255, 242, 0.2); }
-        }
-
-        /* El Panel que se esconde */
+        .toggle-btn:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(255, 0, 255, 0.8); }
+        .toggle-btn.playing { animation: spinPulse 3s infinite linear; border-color: #00fff2; color: #00fff2; }
+        @keyframes spinPulse { 0% { box-shadow: 0 0 5px rgba(0, 255, 242, 0.2); } 50% { box-shadow: 0 0 20px rgba(0, 255, 242, 0.8); } 100% { box-shadow: 0 0 5px rgba(0, 255, 242, 0.2); } }
         .player-panel {
-            background: rgba(10, 14, 39, 0.95);
-            border: 1px solid #00d9ff;
-            height: 60px; /* Altura fija */
-            border-radius: 0 30px 30px 0; /* Redondeado solo a la derecha */
-            padding-left: 25px; /* Espacio para que no choque con el botón */
-            padding-right: 20px;
-            margin-left: -25px; /* Se mete debajo del botón */
-            
-            /* Truco de ocultamiento */
-            max-width: 0;
-            opacity: 0;
-            overflow: hidden;
-            transition: all 0.5s ease;
-            pointer-events: none; /* No molesta si está cerrado */
-            
-            display: flex;
-            align-items: center;
+            background: rgba(10, 14, 39, 0.95); border: 1px solid #00d9ff; height: 60px;
+            border-radius: 0 30px 30px 0; padding-left: 25px; padding-right: 20px;
+            margin-left: -25px; max-width: 0; opacity: 0; overflow: hidden;
+            transition: all 0.5s ease; pointer-events: none; display: flex; align-items: center;
             backdrop-filter: blur(5px);
         }
-
-        /* Cuando el dock tiene la clase 'active' (Abierto) */
-        .music-dock.active .player-panel {
-            max-width: 250px; /* Se expande */
-            opacity: 1;
-            pointer-events: all;
-            box-shadow: 5px 0 20px rgba(0, 217, 255, 0.3);
-        }
-
-        /* Contenido interno */
-        .panel-content {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-            width: 200px; /* Ancho fijo interno para que no se deforme */
-        }
-
-        .song-info-compact {
-            color: #fff;
-            font-size: 11px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            text-align: center;
-        }
-
-        .controls-compact {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .mini-btn {
-            background: none;
-            border: none;
-            color: #00d9ff;
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .play-btn-compact {
-            background: none;
-            border: none;
-            color: #fff;
-            font-size: 16px;
-            cursor: pointer;
-            width: 24px;
-            height: 24px;
-            background: #00d9ff;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #000;
-        }
-
-        /* Barrita de progreso mini */
-        .progress-container-compact {
-            width: 100%;
-            height: 3px;
-            background: #333;
-            border-radius: 2px;
-            overflow: hidden;
-            margin-top: 2px;
-        }
-
-        .progress-bar-fill {
-            height: 100%;
-            background: #ff00ff;
-            width: 0%;
-            transition: width 0.1s linear;
-        }
+        .music-dock.active .player-panel { max-width: 250px; opacity: 1; pointer-events: all; box-shadow: 5px 0 20px rgba(0, 217, 255, 0.3); }
+        .panel-content { display: flex; flex-direction: column; gap: 5px; width: 200px; }
+        .song-info-compact { color: #fff; font-size: 11px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; text-align: center; }
+        .controls-compact { display: flex; justify-content: center; align-items: center; gap: 15px; }
+        .mini-btn { background: none; border: none; color: #00d9ff; font-size: 18px; cursor: pointer; }
+        .play-btn-compact { background: none; border: none; color: #fff; font-size: 16px; cursor: pointer; width: 24px; height: 24px; background: #00d9ff; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: #000; }
+        .progress-container-compact { width: 100%; height: 3px; background: #333; border-radius: 2px; overflow: hidden; margin-top: 2px; }
+        .progress-bar-fill { height: 100%; background: #ff00ff; width: 0%; transition: width 0.1s linear; }
     </style>
 
     <script>
-        // --- TU PLAYLIST ---
         const playlist = [
-            { title: "Far From Home", file: "audio/track1.mp3" },
+            { title: "The Rust Belt", file: "audio/track1.mp3" },
             { title: "Hold Me", file: "audio/track2.mp3" },
             { title: "I Remember", file: "audio/track3.mp3" },
             { title: "The Particular Lesson", file: "audio/track4.mp3" },
@@ -1598,15 +1120,10 @@
         const playBtn = document.getElementById('playBtn');
         const progressFill = document.getElementById('progressFill');
 
-        // Función para ABRIR/CERRAR el panel
         toggleBtn.addEventListener('click', (e) => {
-            // Si hacemos click en el botón principal...
-            if(e.target.closest('#toggleMusicBtn')) {
-                dock.classList.toggle('active'); // Abre o cierra
-            }
+            if(e.target.closest('#toggleMusicBtn')) { dock.classList.toggle('active'); }
         });
 
-        // Cargar canción
         function loadSong(index) {
             titleText.innerText = playlist[index].title;
             audio.src = playlist[index].file;
@@ -1614,35 +1131,31 @@
         loadSong(currentTrack);
         audio.volume = 0.5;
 
-        // Play / Pause
         playBtn.addEventListener('click', () => {
             if (isPlaying) {
                 audio.pause();
                 playBtn.innerText = "▶";
-                toggleBtn.classList.remove('playing'); // Deja de girar
+                toggleBtn.classList.remove('playing');
             } else {
                 audio.play();
                 playBtn.innerText = "❚❚";
-                toggleBtn.classList.add('playing'); // Empieza a girar
+                toggleBtn.classList.add('playing');
             }
             isPlaying = !isPlaying;
         });
 
-        // Siguiente
         document.getElementById('nextBtn').addEventListener('click', () => {
             currentTrack = (currentTrack + 1) % playlist.length;
             loadSong(currentTrack);
             if(isPlaying) audio.play();
         });
 
-        // Anterior
         document.getElementById('prevBtn').addEventListener('click', () => {
             currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
             loadSong(currentTrack);
             if(isPlaying) audio.play();
         });
 
-        // Barra de progreso automática
         audio.addEventListener('timeupdate', () => {
             if(audio.duration) {
                 const percent = (audio.currentTime / audio.duration) * 100;
@@ -1650,25 +1163,19 @@
             }
         });
 
-        // Auto-siguiente
         audio.addEventListener('ended', () => {
             document.getElementById('nextBtn').click();
         });
-       // --- CÓDIGO NUEVO: AUTO-PAUSA AL SALIR ---
+
+        // Auto-pausa al salir de la pestaña
         document.addEventListener("visibilitychange", () => {
-            // Si la página se oculta (bloqueo o cambio de pestaña)
-            if (document.hidden) {
-                if(isPlaying) {
-                    audio.pause();
-                    playBtn.innerText = "▶"; // Cambia icono a Play
-                    toggleBtn.classList.remove('playing'); // Deja de girar
-                    // Ojo: NO cambiamos la variable 'isPlaying' aquí para que el usuario
-                    // tenga que darle play manualmente si vuelve, o para saber que estaba sonando.
-                    // Pero para hacerlo simple, actualizamos el estado:
-                    isPlaying = false;
-                }
+            if (document.hidden && isPlaying) {
+                audio.pause();
+                playBtn.innerText = "▶";
+                toggleBtn.classList.remove('playing');
+                isPlaying = false;
             }
         });
     </script>
+</body>
 </html>
-
